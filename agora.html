@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGORA EVENTS | Nightlife Redefined</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Config & Styles -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        agora: {
+                            black: '#050505',
+                            dark: '#0a0a0a',
+                            pink: '#db2777',
+                            pinkhover: '#be185d',
+                            gray: '#e5e5e5',
+                            muted: '#d4d4d8' /* Lightened from #9ca3af for better contrast */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Oswald', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "linear-gradient(to top, #050505 0%, transparent 100%), url('https://images.unsplash.com/photo-1566737236500-c8ac43014a67?q=80&w=2670&auto=format&fit=crop')",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Clip Path for Edgy Industrial Look */
+        .clip-edge {
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+        }
+        
+        /* Glassmorphism Utility */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050505; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #db2777; 
+        }
+
+        /* Animation Classes */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Active Nav Link State */
+        .nav-link.active {
+            color: #db2777; /* Agora Pink */
+        }
+    </style>
+</head>
+<body class="bg-agora-black text-agora-gray font-sans antialiased selection:bg-agora-pink selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="font-display font-bold text-2xl tracking-wider text-white">
+                        AGORA<span class="text-agora-pink">.</span> EVENTS
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8 ml-10">
+                    <a href="#events" class="nav-link hover:text-agora-pink transition-colors px-3 py-2 font-medium tracking-wide text-sm uppercase" data-translate="nav_dates">TERMINE</a>
+                    <a href="#concept" class="nav-link hover:text-agora-pink transition-colors px-3 py-2 font-medium tracking-wide text-sm uppercase" data-translate="nav_concept">KONZEPT</a>
+                    <a href="#community" class="nav-link hover:text-agora-pink transition-colors px-3 py-2 font-medium tracking-wide text-sm uppercase" data-translate="nav_community">COMMUNITY</a>
+                </div>
+
+                <!-- Right Side: Lang & CTA -->
+                <div class="hidden md:flex items-center gap-6">
+                    <!-- Language Switcher -->
+                    <button onclick="toggleLanguage()" class="text-sm font-medium tracking-wider text-gray-400 hover:text-white transition-colors focus:outline-none">
+                        <span id="lang-de" class="text-white">DE</span>
+                        <span class="mx-1 text-gray-600">|</span>
+                        <span id="lang-en" class="hover:text-white">EN</span>
+                    </button>
+
+                    <!-- 🟢 INSTRUCTION: Replace href="#events" with your actual Ticket Shop URL -->
+                    <a href="#events" class="clip-edge bg-white text-black hover:bg-agora-pink hover:text-white transition-all duration-300 font-display font-bold uppercase px-6 py-2 tracking-wider" data-translate="nav_tickets">
+                        Tickets
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center gap-4">
+                    <!-- Mobile Lang Switcher -->
+                    <button onclick="toggleLanguage()" class="text-xs font-bold text-white border border-white/20 rounded px-2 py-1">
+                        DE / EN
+                    </button>
+
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none" aria-label="Menu">
+                        <i data-lucide="menu" class="w-8 h-8"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="md:hidden hidden bg-agora-dark border-b border-gray-800 absolute w-full">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#events" class="text-gray-300 hover:text-agora-pink block px-3 py-2 rounded-md text-base font-medium" data-translate="nav_dates">TERMINE</a>
+                <a href="#concept" class="text-gray-300 hover:text-agora-pink block px-3 py-2 rounded-md text-base font-medium" data-translate="nav_concept">KONZEPT</a>
+                <a href="#community" class="text-gray-300 hover:text-agora-pink block px-3 py-2 rounded-md text-base font-medium" data-translate="nav_community">COMMUNITY</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 bg-hero-pattern bg-cover bg-center bg-no-repeat bg-fixed"></div>
+        <div class="absolute inset-0 bg-black/40"></div>
+
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto fade-in-up">
+            <div class="inline-flex items-center gap-2 border border-white/20 bg-white/5 backdrop-blur-sm px-4 py-1 rounded-full mb-6">
+                <span class="w-2 h-2 rounded-full bg-agora-pink animate-pulse"></span>
+                <span class="text-xs md:text-sm font-display tracking-widest text-gray-300" data-translate="hero_est">EST. 2024 ESSEN • RUHRGEBIET</span>
+            </div>
+            
+            <h1 class="font-display font-bold text-6xl md:text-8xl lg:text-9xl mb-6 text-transparent bg-clip-text bg-gradient-to-br from-white via-gray-200 to-gray-600 leading-tight" data-translate="hero_headline">
+                NIGHTLIFE<br>REDEFINED
+            </h1>
+            
+            <p class="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-agora-muted font-light leading-relaxed" data-translate="hero_subtext">
+                Mehr als nur ein Club. Wir erschaffen flüchtige, unvergessliche Nächte in den spannendsten Locations in Essen und dem gesamten Ruhrgebiet.
+            </p>
+            
+            <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#events" class="clip-edge bg-agora-pink hover:bg-agora-pinkhover text-white font-display font-bold uppercase px-8 py-4 tracking-widest transition-all duration-300 min-w-[200px]" data-translate="hero_btn_events">
+                    Nächste Events
+                </a>
+                <a href="#community" class="clip-edge border border-white/30 hover:bg-white hover:text-black text-white font-display font-bold uppercase px-8 py-4 tracking-widest transition-all duration-300 min-w-[200px]" data-translate="hero_btn_community">
+                    Be Part of It
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i data-lucide="chevron-down" class="text-white/50 w-8 h-8"></i>
+        </div>
+    </header>
+
+    <!-- Concept Section -->
+    <section id="concept" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="font-display font-bold text-4xl md:text-5xl text-white mb-4" data-translate="concept_title">DAS KONZEPT</h2>
+                <div class="h-1 w-20 bg-agora-pink mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="glass-panel p-8 hover:border-agora-pink/50 transition-all duration-300 group fade-in-up">
+                    <div class="h-12 w-12 bg-agora-pink/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-agora-pink/20 transition-colors">
+                        <i data-lucide="music" class="text-agora-pink w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-2xl text-white mb-3" data-translate="feat1_title">MUSICAL FREEDOM</h3>
+                    <p class="text-agora-muted leading-relaxed" data-translate="feat1_text">
+                        Keine Grenzen. Wir feiern den Sound, der gerade passt. Ob treibender Techno, euphorischer Indie oder 90s Flashbacks – Qualität ist unser einziges Genre.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="glass-panel p-8 hover:border-agora-pink/50 transition-all duration-300 group fade-in-up" style="transition-delay: 100ms;">
+                    <div class="h-12 w-12 bg-agora-pink/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-agora-pink/20 transition-colors">
+                        <i data-lucide="map-pin" class="text-agora-pink w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-2xl text-white mb-3" data-translate="feat2_title">URBAN TAKEOVER</h3>
+                    <p class="text-agora-muted leading-relaxed" data-translate="feat2_text">
+                        Wir brechen aus der Routine aus. Statt immer gleicher Wände kuratieren wir die perfekte Kulisse für jeden Vibe. Von Industrie-Charme bis Underground-Club – Essen und der Pott sind unser Playground.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="glass-panel p-8 hover:border-agora-pink/50 transition-all duration-300 group fade-in-up" style="transition-delay: 200ms;">
+                    <div class="h-12 w-12 bg-agora-pink/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-agora-pink/20 transition-colors">
+                        <i data-lucide="martini" class="text-agora-pink w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-2xl text-white mb-3" data-translate="feat3_title">PREMIUM STANDARDS</h3>
+                    <p class="text-agora-muted leading-relaxed" data-translate="feat3_text">
+                        Wir heben die Messlatte. Statt Standard-Service bieten wir eiskaltes Stauder, perfekt gemixte Highballs und schnelle Bars. Qualität, die man schmeckt.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events Section -->
+    <section id="events" class="py-24 bg-gradient-to-b from-agora-black to-agora-dark border-y border-white/5">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 fade-in-up">
+                <div>
+                    <h2 class="font-display font-bold text-4xl md:text-6xl text-white mb-2" data-translate="events_title">UPCOMING</h2>
+                    <p class="text-agora-muted text-lg" data-translate="events_subtext">Sichere dir deinen Platz auf dem Dancefloor.</p>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <span class="text-agora-pink font-display text-sm tracking-widest uppercase" data-translate="events_season">Saison 2025</span>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <!-- Event 1 -->
+                <div class="glass-panel p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center gap-6 hover:bg-white/5 transition-all duration-300 fade-in-up">
+                    <div class="flex-shrink-0 text-center bg-white/5 rounded p-4 min-w-[90px] border border-white/10">
+                        <span class="block font-display font-bold text-3xl text-white">TBA</span>
+                        <span class="block font-sans text-xs text-agora-pink font-bold uppercase tracking-wider mt-1" data-translate="month_march">MÄRZ</span>
+                    </div>
+                    
+                    <div class="flex-grow">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="bg-purple-500/20 text-purple-300 text-xs px-2 py-0.5 rounded font-bold tracking-wide">OPENING</span>
+                            <span class="bg-blue-500/20 text-blue-300 text-xs px-2 py-0.5 rounded font-bold tracking-wide">TECHNO</span>
+                        </div>
+                        <h3 class="font-display font-bold text-2xl text-white group-hover:text-agora-pink transition-colors">AGORA: SEASON OPENER</h3>
+                        <p class="text-agora-muted flex items-center gap-2 mt-2">
+                            <i data-lucide="map-pin" class="w-4 h-4"></i> Location TBA, Essen
+                        </p>
+                    </div>
+
+                    <div class="mt-4 md:mt-0 w-full md:w-auto">
+                        <!-- UX IMPROVEMENT: Converted "Coming Soon" dead-end to "Notify Me" conversion path -->
+                        <a href="#community" class="group w-full md:w-auto clip-edge border border-agora-pink/50 text-agora-pink hover:bg-agora-pink hover:text-white font-display font-bold uppercase px-6 py-3 tracking-wider text-sm flex items-center justify-center gap-2 transition-all">
+                            <span data-translate="btn_notify">Benachrichtigen</span>
+                            <i data-lucide="bell" class="w-4 h-4 group-hover:animate-swing"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Event 2 -->
+                <div class="glass-panel p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center gap-6 hover:bg-white/5 transition-all duration-300 fade-in-up">
+                    <div class="flex-shrink-0 text-center bg-white/5 rounded p-4 min-w-[90px] border border-white/10">
+                        <span class="block font-display font-bold text-3xl text-white">TBA</span>
+                        <span class="block font-sans text-xs text-agora-pink font-bold uppercase tracking-wider mt-1" data-translate="month_april">APRIL</span>
+                    </div>
+                    
+                    <div class="flex-grow">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="bg-orange-500/20 text-orange-300 text-xs px-2 py-0.5 rounded font-bold tracking-wide">INDIE / 90s</span>
+                        </div>
+                        <h3 class="font-display font-bold text-2xl text-white group-hover:text-agora-pink transition-colors">FLASHBACK FRIDAY</h3>
+                        <p class="text-agora-muted flex items-center gap-2 mt-2">
+                            <i data-lucide="map-pin" class="w-4 h-4"></i> Grend, Essen-Steele
+                        </p>
+                    </div>
+
+                    <div class="mt-4 md:mt-0 w-full md:w-auto">
+                        <a href="#community" class="group w-full md:w-auto clip-edge border border-agora-pink/50 text-agora-pink hover:bg-agora-pink hover:text-white font-display font-bold uppercase px-6 py-3 tracking-wider text-sm flex items-center justify-center gap-2 transition-all">
+                            <span data-translate="btn_notify">Benachrichtigen</span>
+                            <i data-lucide="bell" class="w-4 h-4 group-hover:animate-swing"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center">
+                <p class="text-sm text-gray-500 italic" data-translate="events_more">Weitere Termine folgen in Kürze.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community / Newsletter Section -->
+    <section id="community" class="py-24 relative overflow-hidden">
+        <!-- Decorative elements -->
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-agora-pink/5 blur-3xl -z-10"></div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center fade-in-up">
+            <i data-lucide="message-circle" class="w-16 h-16 text-green-500 mx-auto mb-6"></i>
+            <h2 class="font-display font-bold text-4xl md:text-5xl text-white mb-6" data-translate="comm_title">VERPASSE KEINE NACHT</h2>
+            <p class="text-xl text-agora-muted mb-10 max-w-2xl mx-auto" data-translate="comm_text">
+                Tritt unserem WhatsApp-Verteiler bei. Early-Bird Tickets, Secret Locations und Gästelisten-Plätze. 
+                <span class="text-white font-semibold">Kein Spam, nur wichtige Infos.</span>
+            </p>
+
+            <!-- 🟢 INSTRUCTION: To link to a WhatsApp Group, replace the <form> tag with this link: 
+                 <a href="https://chat.whatsapp.com/YOUR_INVITE_CODE" class="clip-edge bg-[#25D366] ...">...</a> 
+            -->
+            <form class="max-w-md mx-auto relative" onsubmit="event.preventDefault(); alert('Danke! Wir haben dich auf die Liste gesetzt.');">
+                <div class="flex flex-col gap-4">
+                    <button type="submit" class="clip-edge bg-[#25D366] hover:bg-[#20bd5a] text-black font-display font-bold uppercase px-8 py-4 tracking-widest transition-all duration-300 w-full flex items-center justify-center gap-2">
+                        <i data-lucide="smartphone" class="w-5 h-5"></i>
+                        Join WhatsApp
+                    </button>
+                    <p class="text-xs text-gray-500" data-translate="comm_disclaimer">
+                        Durch Klick stimmst du zu, Nachrichten von Agora Events zu erhalten. Abmeldung jederzeit möglich.
+                    </p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-white/10 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <!-- Brand -->
+                <div class="col-span-1 md:col-span-2">
+                    <a href="#" class="font-display font-bold text-2xl tracking-wider text-white mb-4 block">
+                        AGORA<span class="text-agora-pink">.</span> EVENTS
+                    </a>
+                    <p class="text-gray-500 max-w-sm" data-translate="footer_desc">
+                        Kuratierte Event-Kultur für Essen & das Ruhrgebiet.
+                        Wir verwandeln Orte in Erlebnisse. Fair, laut und lokal.
+                    </p>
+                </div>
+
+                <!-- Links -->
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-wider mb-6">Menu</h4>
+                    <ul class="space-y-3 text-gray-500">
+                        <li><a href="#events" class="hover:text-agora-pink transition-colors" data-translate="nav_dates">Termine</a></li>
+                        <li><a href="#concept" class="hover:text-agora-pink transition-colors" data-translate="nav_concept">Konzept</a></li>
+                        <li><a href="#community" class="hover:text-agora-pink transition-colors" data-translate="nav_community">Community</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div>
+                    <h4 class="text-white font-bold uppercase tracking-wider mb-6">Legal</h4>
+                    <ul class="space-y-3 text-gray-500">
+                        <!-- 🟢 INSTRUCTION: Add links to your legal PDFs or Pages here -->
+                        <li><a href="/impressum.html" class="hover:text-white transition-colors" data-translate="legal_imprint">Impressum</a></li>
+                        <li><a href="/datenschutz.html" class="hover:text-white transition-colors" data-translate="legal_privacy">Datenschutz</a></li>
+                        <li><a href="/agb.html" class="hover:text-white transition-colors" data-translate="legal_terms">AGB</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-600 text-sm">
+                    &copy; 2024-2025 Agora Events UG (haftungsbeschränkt) i.G. All rights reserved.
+                </p>
+                <div class="flex space-x-6">
+                    <!-- 🟢 INSTRUCTION: Add your Instagram URL -->
+                    <a href="#" class="text-gray-500 hover:text-agora-pink transition-colors">
+                        <i data-lucide="instagram" class="w-5 h-5"></i>
+                    </a>
+                    
+                    <!-- 🟢 INSTRUCTION: Add your Email -->
+                    <a href="mailto:contact@agora-events.de" class="text-gray-500 hover:text-agora-pink transition-colors">
+                        <i data-lucide="mail" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Translations Dictionary
+        const translations = {
+            de: {
+                nav_dates: "TERMINE",
+                nav_concept: "KONZEPT",
+                nav_community: "COMMUNITY",
+                nav_tickets: "TICKETS",
+                hero_est: "EST. 2024 ESSEN • RUHRGEBIET",
+                hero_headline: "NIGHTLIFE<br>REDEFINED",
+                hero_subtext: "Mehr als nur ein Club. Wir erschaffen flüchtige, unvergessliche Nächte in den spannendsten Locations in Essen und dem gesamten Ruhrgebiet.",
+                hero_btn_events: "NÄCHSTE EVENTS",
+                hero_btn_community: "BE PART OF IT",
+                concept_title: "DAS KONZEPT",
+                feat1_title: "MUSICAL FREEDOM",
+                feat1_text: "Keine Grenzen. Wir feiern den Sound, der gerade passt. Ob treibender Techno, euphorischer Indie oder 90s Flashbacks – Qualität ist unser einziges Genre.",
+                feat2_title: "URBAN TAKEOVER",
+                feat2_text: "Wir brechen aus der Routine aus. Statt immer gleicher Wände kuratieren wir die perfekte Kulisse für jeden Vibe. Von Industrie-Charme bis Underground-Club – Essen und der Pott sind unser Playground.",
+                feat3_title: "PREMIUM STANDARDS",
+                feat3_text: "Wir heben die Messlatte. Statt Standard-Service bieten wir eiskaltes Stauder, perfekt gemixte Highballs und schnelle Bars. Qualität, die man schmeckt.",
+                events_title: "UPCOMING",
+                events_subtext: "Sichere dir deinen Platz auf dem Dancefloor.",
+                events_season: "SAISON 2025",
+                month_march: "MÄRZ",
+                month_april: "APRIL",
+                btn_notify: "BENACHRICHTIGEN",
+                events_more: "Weitere Termine folgen in Kürze.",
+                comm_title: "VERPASSE KEINE NACHT",
+                comm_text: "Tritt unserem WhatsApp-Verteiler bei. Early-Bird Tickets, Secret Locations und Gästelisten-Plätze. <span class='text-white font-semibold'>Kein Spam, nur wichtige Infos.</span>",
+                comm_disclaimer: "Durch Klick stimmst du zu, Nachrichten von Agora Events zu erhalten. Abmeldung jederzeit möglich.",
+                footer_desc: "Kuratierte Event-Kultur für Essen & das Ruhrgebiet. Wir verwandeln Orte in Erlebnisse. Fair, laut und lokal.",
+                legal_imprint: "Impressum",
+                legal_privacy: "Datenschutz",
+                legal_terms: "AGB"
+            },
+            en: {
+                nav_dates: "DATES",
+                nav_concept: "CONCEPT",
+                nav_community: "COMMUNITY",
+                nav_tickets: "TICKETS",
+                hero_est: "EST. 2024 ESSEN • RUHR AREA",
+                hero_headline: "NIGHTLIFE<br>REDEFINED",
+                hero_subtext: "More than just a club. We create fleeting, unforgettable nights in the most exciting locations in Essen and the entire Ruhr area.",
+                hero_btn_events: "NEXT EVENTS",
+                hero_btn_community: "BE PART OF IT",
+                concept_title: "THE CONCEPT",
+                feat1_title: "MUSICAL FREEDOM",
+                feat1_text: "No boundaries. We celebrate the sound that fits the moment. Whether driving techno, euphoric indie, or 90s flashbacks – quality is our only genre.",
+                feat2_title: "URBAN TAKEOVER",
+                feat2_text: "We break the routine. Instead of the same old walls, we curate the perfect backdrop for every vibe. From industrial charm to underground clubs – Essen and the Pott are our playground.",
+                feat3_title: "PREMIUM STANDARDS",
+                feat3_text: "We raise the bar. Instead of standard service, we offer ice-cold Stauder, perfectly mixed highballs, and fast bars. Quality you can taste.",
+                events_title: "UPCOMING",
+                events_subtext: "Secure your spot on the dancefloor.",
+                events_season: "SEASON 2025",
+                month_march: "MARCH",
+                month_april: "APRIL",
+                btn_notify: "NOTIFY ME",
+                events_more: "More dates coming soon.",
+                comm_title: "NEVER MISS A NIGHT",
+                comm_text: "Join our WhatsApp channel. Early-bird tickets, secret locations, and guest list spots. <span class='text-white font-semibold'>No spam, just important info.</span>",
+                comm_disclaimer: "By clicking, you agree to receive messages from Agora Events. Unsubscribe at any time.",
+                footer_desc: "Curated event culture for Essen & the Ruhr area. We turn places into experiences. Fair, loud, and local.",
+                legal_imprint: "Imprint",
+                legal_privacy: "Privacy",
+                legal_terms: "Terms"
+            }
+        };
+
+        // 🟢 UX OPTIMIZATION: Save language preference to browser storage
+        let currentLang = localStorage.getItem('agora_lang') || 'de';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'de' ? 'en' : 'de';
+            localStorage.setItem('agora_lang', currentLang); // Persist choice
+            updateContent();
+            updateLangUI();
+        }
+
+        function updateContent() {
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[currentLang][key]) {
+                    el.innerHTML = translations[currentLang][key];
+                }
+            });
+        }
+
+        function updateLangUI() {
+            const deBtn = document.getElementById('lang-de');
+            const enBtn = document.getElementById('lang-en');
+            
+            if(deBtn && enBtn) {
+                if (currentLang === 'de') {
+                    deBtn.className = 'text-white font-bold';
+                    enBtn.className = 'text-gray-500 hover:text-white font-normal';
+                } else {
+                    deBtn.className = 'text-gray-500 hover:text-white font-normal';
+                    enBtn.className = 'text-white font-bold';
+                }
+            }
+        }
+
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-agora-black/90', 'backdrop-blur-md', 'border-b', 'border-white/5');
+            } else {
+                navbar.classList.remove('bg-agora-black/90', 'backdrop-blur-md', 'border-b', 'border-white/5');
+            }
+            highlightNav();
+        });
+
+        // 🟢 UX OPTIMIZATION: Active Nav Link Highlight
+        const sections = document.querySelectorAll('section, header');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function highlightNav() {
+            let scrollY = window.scrollY;
+            
+            sections.forEach(current => {
+                const sectionHeight = current.offsetHeight;
+                const sectionTop = current.offsetTop - 100;
+                const sectionId = current.getAttribute('id');
+                
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active', 'text-agora-pink');
+                        if (link.getAttribute('href').includes(sectionId)) {
+                            link.classList.add('active', 'text-agora-pink');
+                        }
+                    });
+                }
+            });
+        }
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Simple Reveal Animation on Scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initial UI setup
+        updateContent(); // Run once to ensure lang is correct on load
+        updateLangUI();
+    </script>
+</body>
+</html>
