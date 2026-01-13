@@ -3,20 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Primary SEO -->
-    <title>AGORA | Ruhrgebiet Secret Drops</title>
-    <meta name="description" content="Kein Club. Nur Drops. Die neue Generation des Ruhrgebiet Nightlifes. 18+ | Essen Underground.">
-    
-    <!-- OpenGraph / Social Media -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="AGORA | Ruhrgebiet Secret Drops">
-    <meta property="og:description" content="Join the Circle. Exklusive Industrie-Hallen Takeovers im Pott.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1566737236500-c8ac43014a67?q=80&w=1200&auto=format&fit=crop">
+
+    <title>AGORA | Founding Drop Ruhrgebiet</title>
+    <meta name="description" content="AGORA ist kein Club. Ein Format. Founding Drop 2026 im Ruhrgebiet. Limitiert. Kuratiert. Rechtssicher.">
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -29,7 +20,6 @@
                             black: '#050505',
                             dark: '#0a0a0a',
                             pink: '#ff0066',
-                            gray: '#f5f5f5',
                             muted: '#a1a1aa'
                         }
                     },
@@ -43,369 +33,150 @@
     </script>
 
     <style>
-        body { background-color: #050505; }
-        
-        .grain-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 99; opacity: 0.04;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
-
-        .edge-cut { clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%); }
-
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        /* Animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px) scale(0.98);
-            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-
-        .stagger-1 { transition-delay: 100ms; }
-        .stagger-2 { transition-delay: 200ms; }
-        .stagger-3 { transition-delay: 300ms; }
-
-        .nav-link.active { color: #ff0066; }
-
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: #ff0066; }
-
-        @keyframes pulse-soft { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-        .animate-pulse-soft { animation: pulse-soft 2s infinite; }
-        
-        @keyframes subtle-zoom {
-            from { transform: scale(1.05); }
-            to { transform: scale(1.1); }
-        }
-        .animate-subtle-zoom { animation: subtle-zoom 20s infinite alternate ease-in-out; }
+        body { background:#050505 }
+        .glass { background:rgba(255,255,255,.03); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,.05) }
+        .edge { clip-path: polygon(0 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%) }
+        .reveal{opacity:0;transform:translateY(30px);transition:.8s cubic-bezier(.16,1,.3,1)}
+        .reveal.visible{opacity:1;transform:none}
     </style>
 </head>
-<body class="text-agora-gray font-sans antialiased selection:bg-agora-pink selection:text-white">
-    <div class="grain-overlay"></div>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 top-0 transition-all duration-300 border-b border-white/5 bg-black/80 backdrop-blur-md" id="navbar">
-        <div class="max-w-7xl mx-auto px-6 h-16 md:h-20 flex items-center justify-between">
-            <a href="#" class="font-display font-bold text-xl md:text-2xl tracking-tighter text-white">AGORA<span class="text-agora-pink">.</span></a>
-            
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#concept" class="text-[9px] font-bold tracking-[0.3em] uppercase hover:text-agora-pink transition-colors" data-translate="nav_concept">Check den Vibe</a>
-                <a href="#events" class="text-[9px] font-bold tracking-[0.3em] uppercase hover:text-agora-pink transition-colors" data-translate="nav_events">Die Drops</a>
-                <a href="#faq" class="text-[9px] font-bold tracking-[0.3em] uppercase hover:text-agora-pink transition-colors" data-translate="nav_faq">Kein Gelaber</a>
-            </div>
+<body class="text-white font-sans">
 
-            <div class="flex items-center gap-6">
-                <button onclick="toggleLanguage()" class="text-[9px] font-bold tracking-widest uppercase">
-                    <span id="lang-de" class="text-white">DE</span> / <span id="lang-en" class="opacity-40">EN</span>
-                </button>
-                <a href="#community" class="edge-cut bg-agora-pink text-white px-5 py-2 text-[9px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all" data-translate="nav_join">Slots Sichern</a>
-            </div>
+<!-- NAV -->
+<nav class="fixed w-full z-50 bg-black/80 backdrop-blur border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+        <span class="font-display text-2xl font-bold">AGORA<span class="text-agora-pink">.</span></span>
+        <a href="#community" class="edge bg-agora-pink px-5 py-2 text-black text-xs font-bold uppercase">Founding Slot</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<header class="h-screen flex items-center justify-center text-center px-6">
+    <div class="max-w-3xl reveal">
+        <p class="text-agora-pink text-[10px] tracking-[0.4em] uppercase mb-4">
+            Founding Drop · Essen · 2026
+        </p>
+        <h1 class="font-display text-6xl md:text-8xl font-bold italic leading-[0.9] mb-6">
+            AGORA<br>IS A FORMAT
+        </h1>
+        <p class="text-agora-muted text-sm md:text-base mb-10">
+            Kein Club. Kein Genre. AGORA ist ein temporäres Event-Format.<br>
+            Ein Drop. Eine Nacht. Danach ist alles wieder weg.
+        </p>
+        <div class="flex gap-4 justify-center">
+            <a href="#events" class="edge bg-white text-black px-8 py-3 text-xs font-bold uppercase">Founding Drop</a>
+            <a href="#community" class="edge border border-white/20 px-8 py-3 text-xs font-bold uppercase">Zugang sichern</a>
         </div>
-    </nav>
+    </div>
+</header>
 
-    <!-- Hero -->
-    <header class="relative h-screen flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-agora-black/60 to-agora-black z-10"></div>
-        <div class="absolute inset-0 w-full h-full overflow-hidden">
-            <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-30 animate-subtle-zoom">
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-silhouette-of-people-dancing-at-a-party-4022-large.mp4" type="video/mp4">
-            </video>
-        </div>
-
-        <div class="relative z-20 text-center px-6 reveal">
-            <div class="inline-flex items-center gap-2 border border-agora-pink/30 px-3 py-1 mb-6">
-                <span class="w-1 h-1 rounded-full bg-agora-pink animate-pulse"></span>
-                <p class="text-agora-pink font-display font-bold tracking-[0.4em] text-[9px] uppercase" data-translate="hero_tag">Essen • Pott Underground</p>
-            </div>
-            <h1 class="font-display font-bold text-5xl md:text-8xl tracking-tighter leading-[0.9] mb-6 italic uppercase text-white">
-                RUHR<br>REBORN<br>2026
-            </h1>
-            <p class="max-w-xl mx-auto text-agora-muted text-xs md:text-base font-light tracking-wide leading-relaxed mb-10" data-translate="hero_subtext">
-                Vergiss langweilige Clubs. Wir übernehmen die krassesten Industrie-Hallen im Pott für nur eine Nacht. Keine Stammgäste, kein Gelaber, nur der Sound.
+<!-- WHY -->
+<section class="py-24 border-t border-white/5">
+    <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-16">
+        <div class="reveal">
+            <h2 class="font-display text-5xl font-bold italic mb-6">Warum AGORA?</h2>
+            <p class="text-agora-muted text-sm leading-relaxed">
+                Clubs sind statisch. Trends kommen und gehen.<br><br>
+                AGORA ist ein bewegliches System:  
+                neue Räume, neue Sounds, neue Regeln.<br><br>
+                Der erste Drop ist ein Pilot.  
+                Klein. Präzise. Ohne Kompromisse.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#events" class="edge-cut bg-white text-black px-10 py-4 font-display font-bold uppercase tracking-widest text-[10px] hover:bg-agora-pink hover:text-white transition-all" data-translate="hero_btn_drops">Nächste Drops</a>
-                <a href="#community" class="edge-cut border border-white/20 px-10 py-4 font-display font-bold uppercase tracking-widest text-[10px] hover:bg-white hover:text-black transition-all" data-translate="hero_btn_join">Werde Teil des Circles</a>
+        </div>
+        <div class="glass p-8 reveal">
+            <h3 class="font-display text-xl mb-4 uppercase">So läuft ein Drop ab</h3>
+            <ul class="text-xs text-agora-muted space-y-3">
+                <li>• Legal angemietete Location</li>
+                <li>• Eigene Technik & Crew</li>
+                <li>• §34a Security & Einlasskonzept</li>
+                <li>• Limitierte Tickets, keine Abendkasse</li>
+                <li>• Koordinaten 24h vorher</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- DROP SYSTEM -->
+<section class="py-24 bg-agora-dark">
+    <div class="max-w-5xl mx-auto px-6 reveal">
+        <h2 class="font-display text-5xl italic font-bold mb-10">Drop = Thema</h2>
+        <p class="text-agora-muted text-sm max-w-2xl mb-10">
+            AGORA ist kein Genre.  
+            Jeder Drop folgt einer klaren Idee.  
+            Pro Nacht ein Fokus. Kein Genre-Mix.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="glass p-6 text-xs">
+                <h4 class="font-display mb-2">Warehouse Layer</h4>
+                Hardgroove / Industrial
+            </div>
+            <div class="glass p-6 text-xs">
+                <h4 class="font-display mb-2">Chrome District</h4>
+                Hyperpop / Phonk
+            </div>
+            <div class="glass p-6 text-xs">
+                <h4 class="font-display mb-2">Concrete Pulse</h4>
+                Bass / UK / Experimental
             </div>
         </div>
-        
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce opacity-40">
-            <i data-lucide="chevron-down" class="w-6 h-6"></i>
+    </div>
+</section>
+
+<!-- FIRST DROP -->
+<section id="events" class="py-24">
+    <div class="max-w-5xl mx-auto px-6 reveal">
+        <h2 class="font-display text-6xl italic font-bold mb-8">Founding Drop</h2>
+        <div class="glass p-10">
+            <p class="text-agora-pink text-xs uppercase mb-2">Pilotnacht</p>
+            <h3 class="font-display text-2xl mb-4">Warehouse Layer</h3>
+            <p class="text-agora-muted text-sm mb-6">
+                Ein Drop. Ein Sound.  
+                Hardgroove / Industrial Fokus.  
+                Keine Experimente. Nur Umsetzung.
+            </p>
+            <a href="#community" class="edge bg-white text-black px-8 py-3 text-xs font-bold uppercase">
+                Zugang klären
+            </a>
         </div>
-    </header>
+    </div>
+</section>
 
-    <!-- Mission -->
-    <section id="concept" class="py-24 relative border-b border-white/5">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div class="reveal">
-                    <h2 class="font-display font-bold text-4xl md:text-6xl mb-8 tracking-tighter uppercase italic text-white" data-translate="narr_headline">Hardware<br>vs Software</h2>
-                    <p class="text-agora-muted text-sm md:text-base mb-8 leading-relaxed max-w-lg" data-translate="narr_text">
-                        Die meisten Clubs im Ruhrgebiet sind hängengeblieben. Wir sind das Update. Wir mieten die krassesten Locations, bringen unsere eigene Anlage, Crew und Vibes mit. Wenn die Nacht vorbei ist, verschwinden wir wieder. 
-                    </p>
-                    <div class="flex gap-10 border-t border-white/10 pt-8">
-                        <div>
-                            <p class="text-white font-display text-3xl tracking-tighter">18+</p>
-                            <p class="text-muted text-[9px] uppercase tracking-widest" data-translate="stat_1">Kein Ausreden</p>
-                        </div>
-                        <div>
-                            <p class="text-white font-display text-3xl tracking-tighter">§34A</p>
-                            <p class="text-muted text-[9px] uppercase tracking-widest" data-translate="stat_2">Sicherheit Geht Vor</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div class="glass-panel p-8 reveal stagger-1">
-                        <i data-lucide="zap" class="text-agora-pink mb-4 w-6 h-6"></i>
-                        <h3 class="font-display font-bold text-lg mb-2 uppercase italic text-white" data-translate="feat1_title">Krasser Sound</h3>
-                        <p class="text-[10px] text-agora-muted uppercase tracking-widest leading-relaxed" data-translate="feat1_desc">Hardgroove, Phonk, Hyperpop. Wir spielen, was gerade knallt.</p>
-                    </div>
-                    <div class="glass-panel p-8 reveal stagger-2">
-                        <i data-lucide="shield-check" class="text-agora-pink mb-4 w-6 h-6"></i>
-                        <h3 class="font-display font-bold text-lg mb-2 uppercase italic text-white" data-translate="feat2_title">Profi-Ops</h3>
-                        <p class="text-[10px] text-agora-muted uppercase tracking-widest leading-relaxed" data-translate="feat2_desc">Wir wissen was wir tun. Zertifizierte Security & Einlass.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- COMMUNITY -->
+<section id="community" class="py-32 bg-black text-center">
+    <div class="max-w-xl mx-auto px-6 reveal">
+        <h2 class="font-display text-6xl italic font-bold mb-6">Zugang läuft über WhatsApp</h2>
+        <p class="text-agora-muted text-sm mb-8">
+            Kein Ticketshop. Keine Gruppen.  
+            Nur der offizielle Channel für Drops.
+        </p>
 
-    <!-- Drops -->
-    <section id="events" class="py-24 bg-agora-dark">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 reveal">
-                <div>
-                    <h2 class="font-display font-bold text-5xl md:text-7xl tracking-tighter uppercase italic text-white" data-translate="drops_headline">Latest Drops</h2>
-                    <p class="text-agora-pink font-bold tracking-[0.3em] text-[9px] uppercase mt-2" data-translate="drops_tag">Saison 2026 // Essen Division</p>
-                </div>
-                <div class="hidden md:block">
-                    <div class="bg-red-500/10 text-red-500 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest flex items-center gap-2 animate-pulse-soft">
-                        <span class="w-1 h-1 rounded-full bg-red-500"></span>
-                        <span data-translate="live_demand">Hohe Nachfrage</span>
-                    </div>
-                </div>
-            </div>
+        <a href="https://whatsapp.com/channel/0029Vb6wjJ9Bfxo4kxUCGa16"
+           class="edge bg-[#25D366] text-black px-10 py-4 text-xs font-bold uppercase inline-flex gap-3 items-center">
+            <i data-lucide="message-square"></i>
+            WhatsApp beitreten
+        </a>
 
-            <div class="grid grid-cols-1 gap-5">
-                <!-- Drop 1 -->
-                <div class="glass-panel group p-1 reveal">
-                    <div class="flex flex-col lg:flex-row items-stretch bg-white/5 overflow-hidden">
-                        <div class="lg:w-1/4 p-10 bg-white/5 flex flex-col justify-between group-hover:bg-agora-pink transition-all duration-500">
-                            <span class="text-white/10 font-display text-7xl italic leading-none">01</span>
-                            <div>
-                                <h3 class="text-white font-display text-2xl mb-1 tracking-tighter uppercase group-hover:text-black transition-colors" data-translate="drop1_name">Warehouse Layer</h3>
-                                <p class="text-agora-pink text-[9px] font-bold tracking-widest group-hover:text-white uppercase transition-colors" data-translate="drop1_status">Bestätigt // Anfang 2026</p>
-                            </div>
-                        </div>
-                        <div class="flex-grow p-10 flex flex-col justify-center">
-                            <div class="flex gap-3 mb-6">
-                                <span class="border border-white/20 px-2 py-0.5 text-[7px] font-bold uppercase tracking-widest">Hardgroove / Techno</span>
-                                <span class="border border-white/20 px-2 py-0.5 text-[7px] font-bold uppercase tracking-widest">Essen-West</span>
-                            </div>
-                            <p class="text-agora-muted max-w-lg mb-8 text-xs md:text-sm leading-relaxed" data-translate="drop1_desc">Der Pilot. Eine alte Industriehalle in Essen wird für 10 Stunden zum Zentrum für immersiven Sound. Die genaue Location kriegst du erst mit dem Ticket.</p>
-                            <div class="flex items-center justify-between mt-auto border-t border-white/10 pt-6">
-                                <div class="flex flex-col">
-                                    <span class="text-white font-display text-xl uppercase tracking-tighter">Open</span>
-                                    <span class="text-[7px] text-muted uppercase tracking-widest" data-translate="slots_left">Nur noch 42 Slots frei</span>
-                                </div>
-                                <a href="#community" class="edge-cut bg-white text-black px-8 py-3 text-[9px] font-bold uppercase tracking-widest hover:bg-agora-pink hover:text-white transition-all" data-translate="btn_access">Tickets Klären</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <ul class="mt-6 text-[10px] text-agora-muted space-y-2">
+            <li>• Kein Gruppenchat</li>
+            <li>• Max. 1–2 Updates pro Woche</li>
+            <li>• Jederzeit verlassen</li>
+        </ul>
 
-                <!-- Drop 2 -->
-                <div class="glass-panel p-1 opacity-40 reveal stagger-1">
-                    <div class="flex flex-col lg:flex-row items-stretch bg-white/5 overflow-hidden">
-                        <div class="lg:w-1/4 p-10 bg-white/5 flex flex-col justify-between min-h-[250px]">
-                            <span class="text-white/10 font-display text-7xl italic leading-none">02</span>
-                            <div>
-                                <h3 class="text-white font-display text-2xl mb-1 tracking-tighter uppercase" data-translate="drop2_name">Chrome District</h3>
-                                <p class="text-muted text-[9px] font-bold tracking-widest uppercase" data-translate="drop2_status">In Planung // Mitte 2026</p>
-                            </div>
-                        </div>
-                        <div class="flex-grow p-10 flex flex-col justify-center">
-                            <div class="flex gap-3 mb-6">
-                                <span class="border border-white/20 px-2 py-0.5 text-[7px] font-bold uppercase tracking-widest">Hyperpop / Phonk</span>
-                                <span class="border border-white/20 px-2 py-0.5 text-[7px] font-bold uppercase tracking-widest">TBA</span>
-                            </div>
-                            <p class="text-agora-muted max-w-lg mb-6 text-xs leading-relaxed" data-translate="drop2_desc">Fokus auf die Sounds der digitalen Generation. Release-Daten und Location folgen über den internen Channel.</p>
-                            <button class="w-fit text-muted text-[9px] font-bold uppercase tracking-widest cursor-not-allowed" data-translate="btn_locked">Noch Gesperrt</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        <p class="mt-6 text-[9px] uppercase tracking-widest text-white/20">
+            Founding Circle bekommt Priorität bei kommenden Drops
+        </p>
+    </div>
+</section>
 
-    <!-- FAQ -->
-    <section id="faq" class="py-24 relative">
-        <div class="max-w-3xl mx-auto px-6">
-            <h2 class="font-display font-bold text-4xl mb-16 tracking-tighter uppercase italic text-center text-white reveal" data-translate="faq_title">Kein Gelaber</h2>
-            <div class="space-y-3">
-                <details class="group glass-panel p-6 cursor-pointer transition-all reveal stagger-1">
-                    <summary class="flex justify-between items-center font-bold text-[10px] uppercase tracking-widest list-none text-white">
-                        <span data-translate="q1">Wann kriege ich die Location?</span>
-                        <i data-lucide="plus" class="w-3 h-3 group-open:rotate-45 transition-transform text-agora-pink"></i>
-                    </summary>
-                    <p class="mt-4 text-agora-muted text-xs leading-relaxed" data-translate="a1">Sobald du dein Ticket hast, kriegst du alle Infos rechtzeitig vorab. Die genauen Koordinaten gehen exklusiv an die WhatsApp-Community raus.</p>
-                </details>
-                <details class="group glass-panel p-6 cursor-pointer transition-all reveal stagger-2">
-                    <summary class="flex justify-between items-center font-bold text-[10px] uppercase tracking-widest list-none text-white">
-                        <span data-translate="q2">Muss ich 21 sein?</span>
-                        <i data-lucide="plus" class="w-3 h-3 group-open:rotate-45 transition-transform text-agora-pink"></i>
-                    </summary>
-                    <p class="mt-4 text-agora-muted text-xs leading-relaxed" data-translate="a2">Nein. Einlass ist ab 18 Jahren. Bring aber bitte einen echten Ausweis mit (kein Foto davon auf dem Handy).</p>
-                </details>
-                <details class="group glass-panel p-6 cursor-pointer transition-all reveal stagger-3">
-                    <summary class="flex justify-between items-center font-bold text-[10px] uppercase tracking-widest list-none text-white">
-                        <span data-translate="q3">Wie sicher ist das Ganze?</span>
-                        <i data-lucide="plus" class="w-3 h-3 group-open:rotate-45 transition-transform text-agora-pink"></i>
-                    </summary>
-                    <p class="mt-4 text-agora-muted text-xs leading-relaxed" data-translate="a3">Wir lassen nichts anbrennen. Alle Events werden von zertifiziertem Personal (§34a) begleitet und entsprechen strikten gesetzlichen Vorgaben.</p>
-                </details>
-            </div>
-        </div>
-    </section>
+<script>
+    lucide.createIcons()
+    const obs = new IntersectionObserver(e =>
+        e.forEach(x => x.isIntersecting && x.target.classList.add('visible'))
+    )
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el))
+</script>
 
-    <!-- Join -->
-    <section id="community" class="py-32 relative overflow-hidden bg-agora-dark">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,0,102,0.1),_transparent_70%)]"></div>
-        <div class="max-w-4xl mx-auto px-6 text-center reveal">
-            <h2 class="font-display font-bold text-5xl md:text-8xl tracking-tighter mb-10 italic uppercase text-white" data-translate="comm_headline">Werde Teil<br>des Circles</h2>
-            <p class="text-agora-muted text-sm md:text-base mb-10 leading-relaxed max-w-md mx-auto" data-translate="comm_subtext">Öffentliche Ticket-Links gibt es nicht. Nur wer im WhatsApp-Channel ist, kriegt die Slots für die Drops.</p>
-            <div class="flex flex-col items-center gap-5">
-                <a href="https://whatsapp.com/channel/0029Vb6wjJ9Bfxo4kxUCGa16" target="_blank" class="edge-cut bg-[#25D366] text-black px-12 py-6 font-display font-bold uppercase tracking-widest text-[10px] hover:scale-105 transition-all flex items-center gap-3">
-                    <i data-lucide="message-square" class="w-5 h-5"></i> <span data-translate="comm_btn">WhatsApp Beitreten</span>
-                </a>
-                <p class="text-[9px] font-bold text-white/20 tracking-[0.4em] uppercase">Kein Spam. Nur Koordinaten & Slots.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-20 bg-black border-t border-white/5">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-start gap-12">
-                <div class="max-w-xs">
-                    <a href="#" class="font-display font-bold text-3xl tracking-tighter text-white mb-6 block">AGORA<span class="text-agora-pink">.</span></a>
-                    <p class="text-agora-muted text-[10px] font-bold tracking-widest uppercase leading-loose" data-translate="footer_desc">Asset-Light Event-Infrastruktur für die neue Generation des Ruhrgebiets. Rechtssicher, kuratiert, professionell.</p>
-                </div>
-                <div class="flex gap-16">
-                    <div>
-                        <h4 class="text-white text-[9px] font-bold tracking-widest uppercase mb-6">Menu</h4>
-                        <ul class="space-y-3 text-[9px] font-bold tracking-widest uppercase text-muted">
-                            <li><a href="#concept" class="hover:text-agora-pink">Vibe</a></li>
-                            <li><a href="#events" class="hover:text-agora-pink">Drops</a></li>
-                            <li><a href="#faq" class="hover:text-agora-pink">FAQ</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="text-white text-[9px] font-bold tracking-widest uppercase mb-6">Rechtliches</h4>
-                        <ul class="space-y-3 text-[9px] font-bold tracking-widest uppercase text-muted">
-                            <li><a href="#" class="hover:text-white">Impressum</a></li>
-                            <li><a href="#" class="hover:text-white">Datenschutz</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[7px] font-bold tracking-[0.5em] text-white/10 uppercase gap-4">
-                <p>© 2026 AGORA EVENTS UG (Haftungsbeschränkt) i.G. Essen.</p>
-                <div class="flex gap-8">
-                    <a href="https://www.instagram.com/agoraxo?igsh=ZjRqdW9tNXRraGV1" target="_blank" class="hover:text-white transition-colors">Instagram</a>
-                    <a href="#" class="hover:text-white transition-colors">TikTok</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        const translations = {
-            de: {
-                nav_concept: "Check den Vibe", nav_events: "Die Drops", nav_faq: "Kein Gelaber", nav_join: "Slots Sichern",
-                hero_tag: "Essen • Pott Underground", hero_headline: "RUHR<br>REBORN<br>2026",
-                hero_subtext: "Vergiss langweilige Clubs. Wir übernehmen die krassesten Industrie-Hallen im Pott für nur eine Nacht. Keine Stammgäste, kein Gelaber, nur der Sound.",
-                hero_btn_drops: "Nächste Drops", hero_btn_join: "Werde Teil des Circles",
-                narr_headline: "Hardware<br>vs Software", narr_text: "Die meisten Clubs im Ruhrgebiet sind hängengeblieben. Wir sind das Update. Wir mieten die krassesten Locations, bringen unsere eigene Anlage, Crew und Vibes mit.",
-                stat_1: "Kein Ausreden", stat_2: "Sicherheit Geht Vor",
-                feat1_title: "Krasser Sound", feat1_desc: "Hardgroove, Phonk, Hyperpop. Wir spielen, was gerade knallt.",
-                feat2_title: "Profi-Ops", feat2_desc: "Wir wissen was wir tun. Zertifizierte Security & Einlass.",
-                drops_headline: "Latest Drops", drops_tag: "Saison 2026 // Essen Division", live_demand: "Hohe Nachfrage",
-                drop1_name: "Warehouse Layer", drop1_status: "Bestätigt // Anfang 2026",
-                drop1_desc: "Der Pilot. Eine alte Industriehalle in Essen wird für 10 Stunden zum Zentrum für immersiven Sound. Die genaue Location kriegst du erst mit dem Ticket.",
-                slots_left: "Nur noch 42 Slots frei", btn_access: "Tickets Klären",
-                drop2_name: "Chrome District", drop2_status: "In Planung // Mitte 2026",
-                drop2_desc: "Fokus auf die Sounds der digitalen Generation. Release-Daten und Location folgen über den internen Channel.", btn_locked: "Noch Gesperrt",
-                faq_title: "Kein Gelaber", q1: "Wann kriege ich die Location?", a1: "Sobald du dein Ticket hast, kriegst du alle Infos rechtzeitig vorab. Die genauen Koordinaten gehen exklusiv an die WhatsApp-Community raus.",
-                q2: "Muss ich 21 sein?", a2: "Nein. Einlass ist ab 18 Jahren. Bring aber bitte einen echten Ausweis mit (kein Foto davon auf dem Handy).",
-                q3: "Wie sicher ist das Ganze?", a3: "Sicherheit hat Priorität. Alle Events werden von zertifiziertem Personal (§34a) begleitet und entsprechen gesetzlichen Vorgaben.",
-                comm_headline: "Werde Teil<br>des Circles", comm_subtext: "Öffentliche Ticket-Links gibt es nicht. Nur wer im WhatsApp-Channel ist, kriegt die Slots für die Drops.",
-                comm_btn: "WhatsApp Beitreten", footer_desc: "Asset-Light Event-Infrastruktur für die neue Generation des Ruhrgebiets. Rechtssicher, kuratiert, professionell."
-            },
-            en: {
-                nav_concept: "Check the Vibe", nav_events: "The Drops", nav_faq: "No Bullshit", nav_join: "Secure Slot",
-                hero_tag: "Essen • Pott Underground", hero_headline: "RUHR<br>REBORN<br>2026",
-                hero_subtext: "Forget boring clubs. We take over the sickest industrial halls in the Pott for one night only. No regulars, no talk, just sound.",
-                hero_btn_drops: "Next Drops", hero_btn_join: "Join the Circle",
-                narr_headline: "Hardware<br>vs Software", narr_text: "Most clubs in the Ruhr area are stuck. We are the update. We lease the sickest locations, bringing our own gear, crew, and vibes.",
-                stat_1: "No Excuses", stat_2: "Safety First",
-                feat1_title: "Killer Sound", feat1_desc: "Hardgroove, Phonk, Hyperpop. We play what's hitting now.",
-                feat2_title: "Pro Ops", feat2_desc: "We know what we're doing. Certified security & entry.",
-                drops_headline: "Latest Drops", drops_tag: "Season 2026 // Essen Division", live_demand: "High Demand",
-                drop1_name: "Warehouse Layer", drop1_status: "Confirmed // Early 2026",
-                drop1_desc: "The pilot. An old industrial hall in Essen becomes the center for immersive sound for 10 hours. Location revealed with ticket.",
-                slots_left: "Only 42 slots left", btn_access: "Get Tickets",
-                drop2_name: "Chrome District", drop2_status: "Curating // Mid 2026",
-                drop2_desc: "Focusing on digital generation sounds. Release data and location follow via internal channel.", btn_locked: "Locked",
-                faq_title: "No Bullshit", q1: "When do I get the location?", a1: "Once you have your ticket, you'll get all info in advance. Exact coordinates go exclusively to the WhatsApp community.",
-                q2: "Do I have to be 21?", a2: "No. Entry is 18+. Just bring a real ID (no photos on your phone).",
-                q3: "How safe is it?", a3: "Safety is our priority. All events are accompanied by certified staff (§34a) and comply with legal requirements.",
-                comm_headline: "Join the<br>Circle", comm_subtext: "There are no public ticket links. Only those in the WhatsApp channel get the slots for the drops.",
-                comm_btn: "Join WhatsApp", footer_desc: "Asset-light event infrastructure for the new generation of the Ruhr area. Legal, curated, professional."
-            }
-        };
-
-        let currentLang = 'de';
-        function toggleLanguage() {
-            currentLang = currentLang === 'de' ? 'en' : 'de';
-            updateContent();
-            updateUI();
-        }
-
-        function updateContent() {
-            document.querySelectorAll('[data-translate]').forEach(el => {
-                const key = el.getAttribute('data-translate');
-                if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
-            });
-        }
-
-        function updateUI() {
-            document.getElementById('lang-de').style.opacity = currentLang === 'de' ? '1' : '0.4';
-            document.getElementById('lang-en').style.opacity = currentLang === 'en' ? '1' : '0.4';
-        }
-
-        lucide.createIcons();
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) navbar.classList.add('h-16');
-            else navbar.classList.remove('h-16');
-        });
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    </script>
 </body>
 </html>
