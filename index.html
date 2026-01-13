@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AGORA | Founding Drop Ruhrgebiet</title>
-<meta name="description" content="AGORA ist kein Club. Ein Format. Founding Drop 2026 im Ruhrgebiet. Limitiert. Kuratiert.">
+<title>AGORA | Einzelne Nächte im Ruhrgebiet</title>
+<meta name="description" content="AGORA organisiert einzelne, kuratierte Nächte in Clubs und Event-Locations im Ruhrgebiet. Kein Clubbetrieb. Keine Dauerformate.">
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
@@ -56,8 +56,8 @@ body { background:#050505; }
 
 .reveal {
   opacity: 0;
-  transform: translateY(40px) scale(.97);
-  transition: 1s cubic-bezier(.16,1,.3,1);
+  transform: translateY(40px);
+  transition: .9s cubic-bezier(.16,1,.3,1);
 }
 .reveal.visible {
   opacity: 1;
@@ -69,7 +69,7 @@ body { background:#050505; }
   to { transform: scale(1.12); }
 }
 .hero-video {
-  animation: slowZoom 20s ease-in-out infinite alternate;
+  animation: slowZoom 22s ease-in-out infinite alternate;
 }
 </style>
 </head>
@@ -81,9 +81,11 @@ body { background:#050505; }
 <!-- NAV -->
 <nav class="fixed w-full z-40 bg-black/70 backdrop-blur border-b border-white/5">
   <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
-    <span class="font-display text-2xl font-bold">AGORA<span class="text-agora-pink">.</span></span>
-    <a href="#community" class="edge bg-agora-pink px-5 py-2 text-black text-xs font-bold uppercase hover:shadow-[0_0_20px_rgba(255,0,102,.6)] transition">
-      Founding Slot
+    <span class="font-display text-2xl font-bold">
+      AGORA<span class="text-agora-pink">.</span>
+    </span>
+    <a href="#community" class="edge bg-agora-pink px-5 py-2 text-black text-xs font-bold uppercase hover:shadow-[0_0_18px_rgba(255,0,102,.6)] transition">
+      Infos bekommen
     </a>
   </div>
 </nav>
@@ -97,54 +99,62 @@ body { background:#050505; }
   <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/70 to-black"></div>
 
   <div class="relative z-10 text-center px-6 reveal">
-    <p class="text-agora-pink text-[10px] tracking-[0.4em] uppercase mb-6">
-      Founding Drop · Essen · 2026
+    <p class="text-agora-pink text-[10px] tracking-[0.35em] uppercase mb-6">
+      Einzelne Nächte · Ruhrgebiet · 2026
     </p>
+
     <h1 class="font-display text-6xl md:text-8xl font-bold italic leading-[0.9] mb-6">
-      AGORA<br>IS A FORMAT
+      KEIN CLUB.<br>
+      KEIN FORMAT.<br>
+      EIN ABEND.
     </h1>
+
     <p class="text-agora-muted max-w-xl mx-auto text-sm md:text-base mb-10">
-      Kein Club. Kein Genre.  
-      AGORA ist ein temporäres Event-Format.  
-      Ein Drop. Eine Nacht. Danach ist alles wieder weg.
+      Wir organisieren einzelne Events in Clubs und Event-Locations im Pott.<br>
+      Keine festen Reihen. Keine Wiederholungen.<br>
+      Eine Nacht, dann ist Schluss.
     </p>
+
     <div class="flex gap-4 justify-center">
       <a href="#events" class="edge bg-white text-black px-8 py-3 text-xs font-bold uppercase hover:bg-agora-pink hover:text-white transition">
-        Founding Drop
+        Erster Drop
       </a>
       <a href="#community" class="edge border border-white/20 px-8 py-3 text-xs font-bold uppercase hover:bg-white hover:text-black transition">
-        Zugang sichern
+        Updates bekommen
       </a>
     </div>
   </div>
 </header>
 
-<!-- WHY -->
+<!-- CONCEPT -->
 <section class="relative py-28 border-t border-white/5">
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,0,102,0.08),_transparent_60%)]"></div>
+
   <div class="relative max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16">
     <div class="reveal">
-      <h2 class="font-display text-5xl font-bold italic mb-8">Warum AGORA?</h2>
+      <h2 class="font-display text-5xl font-bold italic mb-8">
+        Was wir machen
+      </h2>
       <p class="text-agora-muted text-sm leading-relaxed">
-        Clubs sind statisch. Trends veralten.  
-        AGORA ist beweglich.  
-        <br><br>
-        Neue Räume. Neue Sounds.  
-        Aber immer dieselbe Kontrolle.
-        <br><br>
-        Der erste Drop ist ein Pilot.  
-        Klein. Präzise. Ohne Kompromisse.
+        Wir nutzen bestehende Clubs und Event-Locations<br>
+        und bespielen sie für einen Abend neu.<br><br>
+        Line-up, Ablauf und Sound kommen von uns.<br>
+        Kein Standard-Clubabend, kein Durchlaufbetrieb.<br><br>
+        Wir fangen bewusst klein an.<br>
+        Wenn’s passt, geht’s weiter.
       </p>
     </div>
 
     <div class="glass p-8 reveal">
-      <h3 class="font-display text-xl uppercase mb-6">So läuft ein Drop ab</h3>
+      <h3 class="font-display text-xl uppercase mb-6">
+        So läuft ein Abend ab
+      </h3>
       <ul class="space-y-3 text-xs text-agora-muted">
-        <li>• Legal angemietete Industrie-Location</li>
-        <li>• Eigene Technik & Crew</li>
-        <li>• §34a Security & Einlasskonzept</li>
+        <li>• Club oder Event-Location im Ruhrgebiet</li>
+        <li>• Für den Abend neu kuratiert</li>
+        <li>• Eigener Ablauf, eigenes Line-up</li>
         <li>• Limitierte Tickets, keine Abendkasse</li>
-        <li>• Koordinaten 24h vorher</li>
+        <li>• Location kommt nach Ticketkauf</li>
       </ul>
     </div>
   </div>
@@ -153,25 +163,27 @@ body { background:#050505; }
 <!-- DROP SYSTEM -->
 <section class="py-28 bg-agora-dark">
   <div class="max-w-6xl mx-auto px-6 reveal">
-    <h2 class="font-display text-5xl italic font-bold mb-8">Drop = Thema</h2>
+    <h2 class="font-display text-5xl italic font-bold mb-8">
+      Jede Nacht ist anders
+    </h2>
     <p class="text-agora-muted max-w-2xl text-sm mb-12">
-      AGORA ist kein Genre.  
-      Jeder Drop folgt einer klaren Idee.  
-      Pro Nacht ein Fokus. Kein Genre-Mix.
+      Wir legen uns nicht auf ein Genre fest.<br>
+      Jeder Abend hat seinen eigenen Fokus.<br>
+      Kein Mischmasch innerhalb einer Nacht.
     </p>
 
     <div class="grid md:grid-cols-3 gap-6">
-      <div class="glass p-6 hover:scale-[1.02] transition">
+      <div class="glass p-6">
         <h4 class="font-display mb-2">Warehouse Layer</h4>
         <p class="text-xs text-agora-muted">Hardgroove / Industrial</p>
       </div>
-      <div class="glass p-6 hover:scale-[1.02] transition">
+      <div class="glass p-6">
         <h4 class="font-display mb-2">Chrome District</h4>
         <p class="text-xs text-agora-muted">Hyperpop / Phonk</p>
       </div>
-      <div class="glass p-6 hover:scale-[1.02] transition">
+      <div class="glass p-6">
         <h4 class="font-display mb-2">Concrete Pulse</h4>
-        <p class="text-xs text-agora-muted">Bass / UK / Experimental</p>
+        <p class="text-xs text-agora-muted">Bass / UK / Experimentelles</p>
       </div>
     </div>
   </div>
@@ -180,17 +192,25 @@ body { background:#050505; }
 <!-- FIRST DROP -->
 <section id="events" class="py-28">
   <div class="max-w-5xl mx-auto px-6 reveal">
-    <h2 class="font-display text-6xl italic font-bold mb-10">Founding Drop</h2>
+    <h2 class="font-display text-6xl italic font-bold mb-10">
+      Erster Drop
+    </h2>
+
     <div class="glass p-10">
-      <p class="text-agora-pink text-xs uppercase mb-2">Pilotnacht</p>
-      <h3 class="font-display text-2xl mb-4">Warehouse Layer</h3>
-      <p class="text-agora-muted text-sm mb-8">
-        Ein Drop. Ein Sound.  
-        Hardgroove / Industrial Fokus.  
-        Keine Experimente. Nur Umsetzung.
+      <p class="text-agora-pink text-xs uppercase mb-2">
+        Pilotabend
       </p>
+      <h3 class="font-display text-2xl mb-4">
+        Warehouse Layer
+      </h3>
+      <p class="text-agora-muted text-sm mb-8">
+        Erster Abend, deshalb halten wir es simpel.<br>
+        Ein Sound, ein Floor, fertig.<br>
+        Location sagen wir nach Ticketkauf.
+      </p>
+
       <a href="#community" class="edge bg-white text-black px-8 py-3 text-xs font-bold uppercase hover:bg-agora-pink hover:text-white transition">
-        Zugang klären
+        Infos bekommen
       </a>
     </div>
   </div>
@@ -199,14 +219,16 @@ body { background:#050505; }
 <!-- COMMUNITY -->
 <section id="community" class="relative py-36 bg-black">
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,0,102,0.12),_transparent_65%)]"></div>
+
   <div class="relative max-w-xl mx-auto px-6 text-center reveal">
     <h2 class="font-display text-6xl italic font-bold mb-8">
-      Zugang läuft<br>über WhatsApp
+      Infos kommen<br>über WhatsApp
     </h2>
+
     <p class="text-agora-muted text-sm mb-10">
-      Kein Ticketshop.  
-      Kein Gruppenchat.  
-      Nur der offizielle Channel für Drops.
+      Kein Gruppenchat.<br>
+      Niemand schreibt dir privat.<br>
+      Wenn’s nervt, gehst du wieder raus.
     </p>
 
     <a href="https://whatsapp.com/channel/0029Vb6wjJ9Bfxo4kxUCGa16"
@@ -215,14 +237,8 @@ body { background:#050505; }
       WhatsApp beitreten
     </a>
 
-    <ul class="mt-8 text-[10px] text-agora-muted space-y-2">
-      <li>• Kein Gruppenchat</li>
-      <li>• Max. 1–2 Updates pro Woche</li>
-      <li>• Jederzeit verlassen</li>
-    </ul>
-
     <p class="mt-8 text-[9px] uppercase tracking-widest text-white/20">
-      Founding Circle bekommt Priorität bei kommenden Drops
+      Max. 1–2 Updates pro Woche
     </p>
   </div>
 </section>
